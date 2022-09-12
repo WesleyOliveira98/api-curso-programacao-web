@@ -1,0 +1,273 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "API Usuários",
+        "description": "Essa é uma API Rest que usaremos em nosso CRUD de Usuários. Ela foi desenvolvida usando Next.js e Google Firebase e hospedada na Vercel.",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "wesleygabrieldeoliveira@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "/api"
+        }
+    ],
+    "tags": [
+        {
+            "name": "usuarios",
+            "description": "Operações sobre usuarios"
+        }
+    ],
+    "paths": {
+        "/usuarios": {
+            "get": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Listar usuários",
+                "description": "Listar todos os Usuários",
+                "operationId": "listUsers",
+                "responses": {
+                    "200": {
+                        "description": "Operação realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro na requisição"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Criar usuário",
+                "description": "Criar um novo usuário",
+                "operationId": "addUser",
+                "requestBody": {
+                    "description": "Criar um novo usuário",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Operação realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro na requisição"
+                    }
+                }
+            }
+        },
+        "/usuarios/{id}": {
+            "get": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Busca usuário",
+                "description": "Busca um usuário através de seu id",
+                "operationId": "findUserById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do usuário buscado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operação realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro na requisição"
+                    },
+                    "404": {
+                        "description": "Usuário não localizado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Editar usuário",
+                "description": "Edita um usuário através de seu id",
+                "operationId": "editUserById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do usuário buscado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Editar um usuário",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "204": {
+                        "description": "Operação realizada com sucesso"
+                    },
+                    "400": {
+                        "description": "Erro na requisição"
+                    },
+                    "404": {
+                        "description": "Usuário não localizado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "usuarios"
+                ],
+                "summary": "Deletar usuário",
+                "description": "Deleta um usuário através de seu id",
+                "operationId": "deleteUserById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do usuário buscado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Operação realizada com sucesso"
+                    },
+                    "400": {
+                        "description": "Erro na requisição"
+                    },
+                    "404": {
+                        "description": "Usuário não localizado"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "required": [
+                    "nome",
+                    "sobrenome",
+                    "email",
+                    "idade",
+                    "data_nascimento",
+                    "ddd",
+                    "telefone",
+                    "cidade",
+                    "estado"
+                ],
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "example": "Wesley",
+                        "description": "Nome do Usuário"
+                    },
+                    "sobrenome": {
+                        "type": "string",
+                        "example": "Oliveira",
+                        "description": "Sobrenome do Usuário"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "w.snipezzz@gmail.com",
+                        "description": "E-mail do Usuário"
+                    },
+                    "idade": {
+                        "type": "int",
+                        "format": "int32",
+                        "example": 24,
+                        "description": "Idade do Usuário"
+                    },
+                    "data_nascimento": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "1998-03-05",
+                        "description": "Data de Nascimento do Usuário"
+                    },
+                    "ddd": {
+                        "type": "int",
+                        "format": "int32",
+                        "example": 16,
+                        "description": "DDD do Telefone do Usuário"
+                    },
+                    "telefone": {
+                        "type": "int",
+                        "format": "int32",
+                        "example": 37011073,
+                        "description": "Telefone do Usuário"
+                    },
+                    "cidade": {
+                        "type": "string",
+                        "example": "Franca",
+                        "description": "Cidade do Usuário"
+                    },
+                    "estado": {
+                        "type": "string",
+                        "example": "SP",
+                        "description": "Estado do Usuário"
+                    }
+                }
+            }
+        }
+    }
+}
