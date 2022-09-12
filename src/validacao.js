@@ -4,7 +4,7 @@ const fields = {
     date: ['data_nascimento']
 };
 
-export default {
+const functions = {
     criacao: function(body) {
         this.compareArrays([...fields.text,...fields.number,...fields.date],Object.keys(body),true);
         fields.text.forEach(key => {
@@ -61,3 +61,5 @@ export default {
         keys.forEach(key => { if (fields.indexOf(key) == -1) throw new Error(`Campo desconhecido: '${key}'`) });
     }
 };
+
+export default functions;

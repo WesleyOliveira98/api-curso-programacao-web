@@ -1,6 +1,7 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
   return (
@@ -13,11 +14,11 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Bem vindo a <a href="#">API!</a>
+          Bem vindo a <Link href="#">API!</Link>
         </h1>
 
         <p className={styles.description}>
-          Clique aqui para ver a <a href="/docs">documentação</a>
+          Clique aqui para ver a <Link href="/docs">documentação</Link>
         </p>
       </main>
 
