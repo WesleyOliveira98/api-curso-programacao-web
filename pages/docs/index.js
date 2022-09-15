@@ -3,7 +3,15 @@ import Head from "next/head";
 import { SwaggerUIBundle, SwaggerUIStandalonePreset} from "swagger-ui-dist";
 import "swagger-ui-dist/swagger-ui.css";
 
-export default function App() {
+export async function getStaticProps() {
+  return {
+    props: {
+      auth: process.env.AUTH
+    }
+  }
+}
+
+export default function Docs(props) {
 
   React.useEffect(() => {
     const ui = SwaggerUIBundle({
@@ -13,7 +21,16 @@ export default function App() {
         SwaggerUIBundle.presets.apis,
         SwaggerUIStandalonePreset
       ],
-      layout: "StandaloneLayout"
+      layout: "StandaloneLayout",
+      configs: {
+        preFetch: function(req) {
+          req.headers.Authorization = props.auth
+          return req
+        }
+      },
+      onComplete: function() {
+        ui.preauthorizeBasic("basicAuth", "admin", "admin");
+      }
     })
 
     window.ui = ui

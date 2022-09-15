@@ -41,7 +41,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/User"
+                                        "$ref": "#/components/schemas/UserResponse"
                                     }
                                 }
                             }
@@ -49,6 +49,16 @@
                     },
                     "400": {
                         "description": "Erro na requisição"
+                    },
+                    "401": {
+                        "description": "Não autorizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Unauthorized"
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -76,13 +86,23 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/User"
+                                    "$ref": "#/components/schemas/UserResponse"
                                 }
                             }
                         }
                     },
                     "400": {
                         "description": "Erro na requisição"
+                    },
+                    "401": {
+                        "description": "Não autorizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Unauthorized"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -113,13 +133,23 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/User"
+                                    "$ref": "#/components/schemas/UserResponse"
                                 }
                             }
                         }
                     },
                     "400": {
                         "description": "Erro na requisição"
+                    },
+                    "401": {
+                        "description": "Não autorizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Unauthorized"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Usuário não localizado"
@@ -163,6 +193,16 @@
                     "400": {
                         "description": "Erro na requisição"
                     },
+                    "401": {
+                        "description": "Não autorizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Unauthorized"
+                                }
+                            }
+                        }
+                    },
                     "404": {
                         "description": "Usuário não localizado"
                     }
@@ -194,6 +234,16 @@
                     "400": {
                         "description": "Erro na requisição"
                     },
+                    "401": {
+                        "description": "Não autorizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Unauthorized"
+                                }
+                            }
+                        }
+                    },
                     "404": {
                         "description": "Usuário não localizado"
                     }
@@ -202,6 +252,12 @@
         }
     },
     "components": {
+        "securitySchemes": {
+            "basicAuth": {
+                "type": "http",
+                "scheme": "basic"
+            }
+        },
         "schemas": {
             "User": {
                 "required": [
@@ -265,6 +321,75 @@
                         "type": "string",
                         "example": "SP",
                         "description": "Estado do Usuário"
+                    }
+                }
+            },
+            "UserResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "int",
+                        "format": "int32",
+                        "example": 1,
+                        "description": "ID do Usuário"
+                    },
+                    "nome": {
+                        "type": "string",
+                        "example": "Wesley",
+                        "description": "Nome do Usuário"
+                    },
+                    "sobrenome": {
+                        "type": "string",
+                        "example": "Oliveira",
+                        "description": "Sobrenome do Usuário"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "w.snipezzz@gmail.com",
+                        "description": "E-mail do Usuário"
+                    },
+                    "idade": {
+                        "type": "int",
+                        "format": "int32",
+                        "example": 24,
+                        "description": "Idade do Usuário"
+                    },
+                    "data_nascimento": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "1998-03-05",
+                        "description": "Data de Nascimento do Usuário"
+                    },
+                    "ddd": {
+                        "type": "int",
+                        "format": "int32",
+                        "example": 16,
+                        "description": "DDD do Telefone do Usuário"
+                    },
+                    "telefone": {
+                        "type": "int",
+                        "format": "int32",
+                        "example": 37011073,
+                        "description": "Telefone do Usuário"
+                    },
+                    "cidade": {
+                        "type": "string",
+                        "example": "Franca",
+                        "description": "Cidade do Usuário"
+                    },
+                    "estado": {
+                        "type": "string",
+                        "example": "SP",
+                        "description": "Estado do Usuário"
+                    }
+                }
+            },
+            "Unauthorized": {
+                "type": "object",
+                "properties": {
+                    "erro": {
+                        "type": "string",
+                        "example": "Não autorizado!"
                     }
                 }
             }
