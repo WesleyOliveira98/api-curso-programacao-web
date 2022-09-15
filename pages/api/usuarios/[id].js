@@ -3,6 +3,11 @@ import admin from 'firebase-admin';
 import validacao from '../../../src/validacao';
 
 export default async function users(req, res) {
+    if (req.headers.authorization !== process.env.AUTH) {
+        res.status(401).json({error: 'Não autorizado!'});
+        return;
+    }
+    
     if(!admin.apps[0]) admin.initializeApp({
         credential: admin.credential.cert(service),
         databaseURL: process.env.DATABASE_URL
@@ -14,6 +19,8 @@ export default async function users(req, res) {
         res.status(400).json({ error: 'O ID não foi enviado!' });
         return;
     }
+
+    console.log(req)
 
     switch (req.method) {
         case 'GET':

@@ -2,6 +2,19 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  async headers() {
+    return [
+      {
+        source: '/api/usuarios',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+        ],
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
