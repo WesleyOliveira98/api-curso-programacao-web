@@ -8,7 +8,7 @@ export default async function usuarios(req, res){;
         methods: ['GET', 'POST'],
         origin: '*',
         optionsSuccessStatus: 200,
-     });
+    });
 
     if (req.headers.authorization !== process.env.AUTH) {
         res.status(401).json({error: 'Não autorizado!'});

@@ -3,6 +3,12 @@ import admin from 'firebase-admin';
 import validacao from '../../../src/validacao';
 
 export default async function users(req, res) {
+    await NextCors(req, res, {
+        methods: ['GET', 'PUT', 'DELETE'],
+        origin: '*',
+        optionsSuccessStatus: 200,
+    });
+
     if (req.headers.authorization !== process.env.AUTH) {
         res.status(401).json({error: 'Não autorizado!'});
         return;
