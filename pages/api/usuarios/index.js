@@ -1,8 +1,15 @@
 import service from '/firebase/firebase.js';
 import admin from 'firebase-admin';
 import validacao from '../../../src/validacao';
+import NextCors from 'nextjs-cors';
 
 export default async function usuarios(req, res){;
+    await NextCors(req, res, {
+        methods: ['GET', 'POST'],
+        origin: '*',
+        optionsSuccessStatus: 200,
+     });
+
     if (req.headers.authorization !== process.env.AUTH) {
         res.status(401).json({error: 'Não autorizado!'});
         return;
