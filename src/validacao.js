@@ -1,6 +1,6 @@
 const fields = {
     text: ['id','nome','sobrenome','email','endereco','bairro','cidade','estado'],
-    number: ['idade','ddd','telefone','cep'],
+    number: ['ddd','telefone','cep'],
     date: ['data_nascimento']
 };
 

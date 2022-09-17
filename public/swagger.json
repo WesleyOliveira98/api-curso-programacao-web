@@ -264,7 +264,6 @@
                     "nome",
                     "sobrenome",
                     "email",
-                    "idade",
                     "data_nascimento",
                     "ddd",
                     "telefone",
@@ -290,12 +289,6 @@
                         "type": "string",
                         "example": "w.snipezzz@gmail.com",
                         "description": "E-mail do Usuário"
-                    },
-                    "idade": {
-                        "type": "int",
-                        "format": "int32",
-                        "example": 24,
-                        "description": "Idade do Usuário"
                     },
                     "data_nascimento": {
                         "type": "string",
@@ -366,12 +359,6 @@
                         "type": "string",
                         "example": "w.snipezzz@gmail.com",
                         "description": "E-mail do Usuário"
-                    },
-                    "idade": {
-                        "type": "int",
-                        "format": "int32",
-                        "example": 24,
-                        "description": "Idade do Usuário"
                     },
                     "data_nascimento": {
                         "type": "string",
