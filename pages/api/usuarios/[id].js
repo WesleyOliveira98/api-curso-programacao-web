@@ -1,6 +1,7 @@
 import service from '/firebase/firebase.js';
 import admin from 'firebase-admin';
 import validacao from '../../../src/validacao';
+import NextCors from 'nextjs-cors';
 
 export default async function users(req, res) {
     await NextCors(req, res, {
