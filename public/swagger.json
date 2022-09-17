@@ -312,6 +312,17 @@
                         "example": 37011073,
                         "description": "Telefone do Usuário"
                     },
+                    "cep": {
+                        "type": "int",
+                        "format": "int32",
+                        "example": 14403500,
+                        "description": "CEP do Usuário"
+                    },
+                    "endereco": {
+                        "type": "string",
+                        "example": "Franca",
+                        "description": "Avenida Santa Cruz"
+                    },
                     "cidade": {
                         "type": "string",
                         "example": "Franca",
@@ -371,6 +382,17 @@
                         "format": "int32",
                         "example": 37011073,
                         "description": "Telefone do Usuário"
+                    },
+                    "cep": {
+                        "type": "int",
+                        "format": "int32",
+                        "example": 14403500,
+                        "description": "CEP do Usuário"
+                    },
+                    "endereco": {
+                        "type": "string",
+                        "example": "Franca",
+                        "description": "Avenida Santa Cruz"
                     },
                     "cidade": {
                         "type": "string",

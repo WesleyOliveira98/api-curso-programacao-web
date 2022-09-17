@@ -1,6 +1,6 @@
 const fields = {
-    text: ['id','nome','sobrenome','email','cidade','estado'],
-    number: ['idade','ddd','telefone'],
+    text: ['id','nome','sobrenome','email','endereco','cidade','estado'],
+    number: ['idade','ddd','telefone','cep'],
     date: ['data_nascimento']
 };
 
@@ -15,6 +15,13 @@ const functions = {
         });
         fields.number.forEach(key => {
             if (typeof body[key] !== 'number') throw new Error(`O campo '${key}' está com o tipo incorreto! Espera-se um number.`);
+            
+            if(key === 'ddd' && body[key].length > 2) throw new Error(`O campo '${key}' deve ter 2 digitos.`);
+
+            if(key === 'telefone' && body[key].length > 9) throw new Error(`O campo '${key}' deve ter no máximo 9 digitos.`);
+            else if(key === 'telefone' && body[key].length < 8) throw new Error(`O campo '${key}' deve ter no minimo 8 digitos.`);
+
+            if(key === 'cep' && body[key].length > 9) throw new Error(`O campo '${key}' deve ter 8 digitos.`);
         });
         fields.date.forEach(key => {
             if (typeof body[key] !== 'string') throw new Error(`O campo '${key}' está com o tipo incorreto! Espera-se uma data em string.`);
