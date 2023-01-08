@@ -13,6 +13,15 @@ const nextConfig = {
           },
         ],
       },
+      {
+        source: '/api/curso/progresso',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+        ],
+      },
     ]
   },
 }
