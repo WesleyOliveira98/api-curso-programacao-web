@@ -264,10 +264,12 @@
                     "nome",
                     "sobrenome",
                     "email",
-                    "idade",
                     "data_nascimento",
                     "ddd",
                     "telefone",
+                    "cep",
+                    "endereco",
+                    "bairro",
                     "cidade",
                     "estado"
                 ],
@@ -288,12 +290,6 @@
                         "example": "w.snipezzz@gmail.com",
                         "description": "E-mail do Usuário"
                     },
-                    "idade": {
-                        "type": "int",
-                        "format": "int32",
-                        "example": 24,
-                        "description": "Idade do Usuário"
-                    },
                     "data_nascimento": {
                         "type": "string",
                         "format": "date-time",
@@ -311,6 +307,22 @@
                         "format": "int32",
                         "example": 37011073,
                         "description": "Telefone do Usuário"
+                    },
+                    "cep": {
+                        "type": "int",
+                        "format": "int32",
+                        "example": 14403500,
+                        "description": "CEP do Usuário"
+                    },
+                    "endereco": {
+                        "type": "string",
+                        "example": "Avenida Santa Cruz",
+                        "description": "Endereço do Usuário"
+                    },
+                    "bairro": {
+                        "type": "string",
+                        "example": "Vila Santa Cruz",
+                        "description": "Bairro do Usuário"
                     },
                     "cidade": {
                         "type": "string",
@@ -348,12 +360,6 @@
                         "example": "w.snipezzz@gmail.com",
                         "description": "E-mail do Usuário"
                     },
-                    "idade": {
-                        "type": "int",
-                        "format": "int32",
-                        "example": 24,
-                        "description": "Idade do Usuário"
-                    },
                     "data_nascimento": {
                         "type": "string",
                         "format": "date-time",
@@ -371,6 +377,22 @@
                         "format": "int32",
                         "example": 37011073,
                         "description": "Telefone do Usuário"
+                    },
+                    "cep": {
+                        "type": "int",
+                        "format": "int32",
+                        "example": 14403500,
+                        "description": "CEP do Usuário"
+                    },
+                    "endereco": {
+                        "type": "string",
+                        "example": "Avenida Santa Cruz",
+                        "description": "Endereço do Usuário"
+                    },
+                    "bairro": {
+                        "type": "string",
+                        "example": "Vila Santa Cruz",
+                        "description": "Bairro do Usuário"
                     },
                     "cidade": {
                         "type": "string",
