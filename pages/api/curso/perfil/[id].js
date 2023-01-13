@@ -4,7 +4,7 @@ import NextCors from 'nextjs-cors';
 
 export default async function users(req, res) {
     await NextCors(req, res, {
-        methods: ['PUT'],
+        methods: ['GET', 'PUT'],
         origin: '*',
         optionsSuccessStatus: 200,
     });
@@ -27,6 +27,22 @@ export default async function users(req, res) {
     }
 
     switch (req.method) {
+        case 'GET':
+            try {
+                const ref = db.ref('/perfil/'+uid);
+
+                let dados = null;
+                await ref.once("value", snapshot => dados= snapshot.val())
+
+                if (dados) res.status(200).json(dados);
+                else res.status(404).json({ error: "Perfil não existe" });
+            }
+            catch (error) {
+                res.status(400).json({ error: error.message });
+            }
+
+            break;
+
         case 'PUT':
             try {
                 const reqBody = req.body;
@@ -34,22 +50,22 @@ export default async function users(req, res) {
                 const body = typeof reqBody === 'object' ? reqBody : JSON.parse(reqBody);
 
                 //validar body
-                if (!body.indice || !body.progresso) throw new Error("Payload Inválido!")
-                if (body.indice.aula === undefined || body.indice.parte === undefined ) throw new Error("Indice Inválido!")
-                if (body.progresso.finalizado === undefined  || body.progresso.tempo === undefined  ) throw new Error("Progresso Inválido!")
+                const campos = ['nome','email','photoURL'];
+                const payload = {};
+
+                campos.forEach(campo => {
+                    if (!body[campo]) throw new Error(`Campo '${campo}' ausente`);
+                    else if (body[campo] == "") throw new Error(`Campo '${campo}' está vazio`);
+                    else payload[campo] = body[campo];
+                });
 
                 const ref = db.ref('/perfil/'+uid);
 
                 let dados = null
                 await ref.once("value", snapshot => dados = snapshot.val())
-                
-                if (!dados) throw new Error("Perfil não existe");
 
-                let newProgresso = [...dados.progresso]
-                newProgresso[Number(body.indice.aula)][Number(body.indice.parte)] = body.progresso;
-                dados.progresso = newProgresso;
-
-                await ref.set(dados);
+                if (!dados) res.status(404).json({ error: "Perfil não existe" });
+                else await ref.set({...payload, progresso: dados.progresso, uid: uid});
 
                 res.status(204).end();
             }
