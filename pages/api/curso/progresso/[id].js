@@ -43,7 +43,10 @@ export default async function users(req, res) {
                 let dados = null
                 await ref.once("value", snapshot => dados = snapshot.val())
                 
-                if (!dados) throw new Error("Perfil não existe");
+                if (!dados) {
+                    res.status(404).end();
+                    return;
+                }
 
                 let newProgresso = [...dados.progresso]
                 newProgresso[Number(body.indice.aula)][Number(body.indice.parte)] = body.progresso;
