@@ -9,7 +9,7 @@ export default async function users(req, res) {
         optionsSuccessStatus: 200,
     });
     
-    if (req.headers.authorization !== process.env.AUTH) {
+    if (req.headers.authorization !== process.env.AUTH_ADMIN) {
         res.status(401).json({error: 'Não autorizado!'});
         return;
     }
