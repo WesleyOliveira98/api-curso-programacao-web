@@ -9,11 +9,6 @@ export default async function users(req, res) {
         optionsSuccessStatus: 200,
     });
     
-    if (req.headers.authorization !== process.env.AUTH_ADMIN) {
-        res.status(401).json({error: 'Não autorizado!'});
-        return;
-    }
-    
     if(!admin.apps[0]) admin.initializeApp({
         credential: admin.credential.cert(service),
         databaseURL: process.env.DATABASE_URL
@@ -214,6 +209,11 @@ export default async function users(req, res) {
 
     switch (req.method) {
         case 'GET':
+            if (req.headers.authorization !== process.env.AUTH_SUPERUSER) {
+                res.status(401).json({error: 'Não autorizado!'});
+                return;
+            }
+
             try {
                 const ref = db.ref('/perfil/');
 
@@ -230,6 +230,11 @@ export default async function users(req, res) {
             break;
 
         case 'POST':
+            if (req.headers.authorization !== process.env.AUTH_ADMIN) {
+                res.status(401).json({error: 'Não autorizado!'});
+                return;
+            }
+
             try {
                 const reqBody = req.body;
                 if (!reqBody || Object.keys(reqBody).length === 0) throw new Error("Os dados não foram enviados!");
