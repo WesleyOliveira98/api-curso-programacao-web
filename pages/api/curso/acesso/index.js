@@ -84,11 +84,7 @@ export default async function users(req, res) {
 
                 const ref = db.ref('/acesso/'+body.uid);
 
-                let dados = null
-                await ref.once("value", snapshot => dados = snapshot.val())
-
-                if (dados) throw new Error("Solicitação já feita para esse e-mail");
-                else await ref.set(payload);
+                await ref.set(payload);
 
                 res.status(201).end();
             }
